@@ -227,8 +227,11 @@ void chooseKb_ble(const uint8_t *layout) {
 }
 bool ask_restart() {
   if(Ask_for_restart==2) { // it'll be set to 2 if it was 1 and disconnect bluetooth
-    displayError("Restart Device");
-    returnToMenu=true;
+    displayError("restart required");
+    delay(3);
+    displayWarning("restarting...");
+    delay(2);
+    ESP.restart();
     return true;
   }
   return false;
